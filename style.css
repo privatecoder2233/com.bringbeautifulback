@@ -2,7 +2,6 @@
 
 :root {
   --ink: #120f0b;
-  --ink-soft: #26201630;
   --parchment: #f3ece0;
   --parchment-dim: rgba(243, 236, 224, 0.62);
   --rose: #c98a6d;
@@ -55,18 +54,12 @@ body {
   top: -12vmax; left: -14vmax;
   background: radial-gradient(circle at 30% 30%, var(--rose), transparent 70%);
 }
+
 .blob--two {
   width: 40vmax; height: 40vmax;
   bottom: -14vmax; right: -12vmax;
   background: radial-gradient(circle at 60% 40%, var(--champagne), transparent 70%);
   animation-delay: -9s;
-}
-.blob--three {
-  width: 30vmax; height: 30vmax;
-  top: 40%; left: 55%;
-  background: radial-gradient(circle at 50% 50%, var(--sage), transparent 70%);
-  opacity: 0.35;
-  animation-delay: -16s;
 }
 
 @keyframes drift {
@@ -77,37 +70,16 @@ body {
 
 /* ---------- layout ---------- */
 
-.nav {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2.2rem 3rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
-  color: var(--parchment-dim);
-}
-
-.nav__mark {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 1.15rem;
-  letter-spacing: 0.12em;
-  color: var(--parchment);
-}
-
 .hero {
   position: relative;
   z-index: 1;
-  min-height: calc(100vh - 9rem);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 1.5rem 4rem;
+  padding: 2rem 1.5rem;
 }
 
 .eyebrow {
@@ -135,115 +107,40 @@ body {
 }
 
 .lead {
-  max-width: 34rem;
-  margin: 2.4rem auto 3rem;
-  font-size: 1.02rem;
-  line-height: 1.75;
+  margin: 2.4rem auto 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
   color: var(--parchment-dim);
-}
-
-/* ---------- form ---------- */
-
-.form {
-  width: min(30rem, 100%);
-}
-
-.form__label {
-  display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--parchment-dim);
-  margin-bottom: 0.9rem;
-}
-
-.form__row {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.form__input {
-  flex: 1;
-  min-width: 0;
-  padding: 1rem 1.2rem;
-  font-family: var(--body);
-  font-size: 0.95rem;
-  font-weight: 300;
-  color: var(--parchment);
-  background: rgba(243, 236, 224, 0.06);
-  border: 1px solid rgba(230, 201, 169, 0.28);
-  border-radius: 2px;
-  outline: none;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.form__input::placeholder { color: rgba(243, 236, 224, 0.35); }
-.form__input:focus {
-  border-color: var(--champagne);
-  background: rgba(243, 236, 224, 0.09);
-}
-
-.form__btn {
-  padding: 1rem 1.6rem;
-  font-family: var(--body);
-  font-size: 0.82rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: var(--champagne);
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-  white-space: nowrap;
-}
-
-.form__btn:hover { background: #f0d7b6; transform: translateY(-1px); }
-.form__btn:active { transform: translateY(0); }
-
-.form__msg {
-  min-height: 1.4em;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--champagne);
 }
 
 /* ---------- footer ---------- */
 
 .foot {
-  position: relative;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
   padding: 2.2rem 3rem;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   color: var(--parchment-dim);
+  text-align: center;
 }
-
-.foot__dots { color: var(--rose); letter-spacing: 0.14em; }
 
 /* ---------- entrance animation ---------- */
 
-.reveal {
+.hero > * {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.9s ease var(--delay, 0ms),
-              transform 0.9s ease var(--delay, 0ms);
+  animation: rise 0.9s ease forwards var(--delay, 0ms);
 }
 
-.reveal.is-in { opacity: 1; transform: translateY(0); }
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ---------- responsive ---------- */
 
 @media (max-width: 560px) {
-  .nav { padding: 1.6rem 1.4rem; }
-  .foot { padding: 1.6rem 1.4rem; justify-content: center; text-align: center; }
-  .form__row { flex-direction: column; }
-  .form__btn { width: 100%; }
+  .foot { padding: 1.6rem 1.4rem; }
   .lead { margin-top: 2rem; }
 }
