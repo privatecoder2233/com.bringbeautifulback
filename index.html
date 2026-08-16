@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bring Beautiful Back — Coming Soon</title>
+  <meta name="description" content="Something beautiful is on its way. Bring Beautiful Back launches soon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="blob blob--one" aria-hidden="true"></div>
+  <div class="blob blob--two" aria-hidden="true"></div>
+  <div class="blob blob--three" aria-hidden="true"></div>
+
+  <header class="nav">
+    <span class="nav__mark">BBB</span>
+    <span class="nav__tag">Est. MMXXVI</span>
+  </header>
+
+  <main class="hero">
+    <p class="eyebrow reveal">Coming Soon</p>
+    <h1 class="title reveal">
+      Bring<br /><em>Beautiful</em><br />Back.
+    </h1>
+    <p class="lead reveal">
+      In a loud, fast, disposable world — we're quietly making room for
+      beauty again. Graceful details, timeless craft, and things worth
+      loving slowly.
+    </p>
+
+    <form class="form reveal" id="notify-form">
+      <label class="form__label" for="email">Be the first to know</label>
+      <div class="form__row">
+        <input class="form__input" id="email" type="email" name="email"
+               placeholder="your@email.com" required autocomplete="email" />
+        <button class="form__btn" type="submit">Notify me</button>
+      </div>
+      <p class="form__msg" id="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <footer class="foot">
+    <span>© 2026 Bring Beautiful Back</span>
+    <span class="foot__dots" aria-hidden="true">✦ &nbsp;join us&nbsp; ✦</span>
+    <span>hello@bringbeautifulback.com</span>
+  </footer>
+
+  <script>
+    const form = document.getElementById('notify-form');
+    const msg = document.getElementById('form-msg');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.email.value.trim();
+      msg.textContent = email
+        ? `Thank you — beauty is on its way to ${email}.`
+        : 'Please enter your email address.';
+      form.reset();
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    window.addEventListener('DOMContentLoaded', () => {
+      reveals.forEach((el, i) => {
+        el.style.setProperty('--delay', `${i * 140}ms`);
+        el.classList.add('is-in');
+      });
+    });
+  </script>
+</body>
+</html>
